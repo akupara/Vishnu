@@ -20,6 +20,12 @@
 		653E1F771C75997F00C73E1A /* CommonCrypto.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 653E1F711C75997F00C73E1A /* CommonCrypto.xcconfig */; };
 		653E1F7D1C759A0B00C73E1A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 653E1F7C1C759A0B00C73E1A /* libz.tbd */; };
 		653E1F811C759A1F00C73E1A /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653E1F541C75996000C73E1A /* CommonCrypto.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		653E200E1C75B57300C73E1A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 653E200D1C75B57300C73E1A /* Info.plist */; };
+		653E20E01C75BC8700C73E1A /* Vishnu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653E1F041C7596C800C73E1A /* Vishnu.framework */; };
+		653E21591C76B57000C73E1A /* Digest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653E21581C76B57000C73E1A /* Digest.swift */; };
+		653E21621C76B5F300C73E1A /* HMAC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653E21611C76B5F300C73E1A /* HMAC.swift */; };
+		653E21671C76B61D00C73E1A /* NSData+CryptoExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653E21661C76B61D00C73E1A /* NSData+CryptoExtension.swift */; };
+		653E216C1C76B64400C73E1A /* String+CryptoExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653E216B1C76B64400C73E1A /* String+CryptoExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +49,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 653E1F531C75996000C73E1A;
 			remoteInfo = CommonCrypto;
+		};
+		653E20DE1C75BC8200C73E1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 653E1EFB1C7596C800C73E1A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 653E1F031C7596C800C73E1A;
+			remoteInfo = Vishnu;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -73,6 +86,11 @@
 		653E1F751C75997F00C73E1A /* watchos.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = watchos.modulemap; sourceTree = "<group>"; };
 		653E1F761C75997F00C73E1A /* watchsimulator.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = watchsimulator.modulemap; sourceTree = "<group>"; };
 		653E1F7C1C759A0B00C73E1A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		653E200D1C75B57300C73E1A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		653E21581C76B57000C73E1A /* Digest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Digest.swift; sourceTree = "<group>"; };
+		653E21611C76B5F300C73E1A /* HMAC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMAC.swift; sourceTree = "<group>"; };
+		653E21661C76B61D00C73E1A /* NSData+CryptoExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+CryptoExtension.swift"; sourceTree = "<group>"; };
+		653E216B1C76B64400C73E1A /* String+CryptoExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+CryptoExtension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				653E20E01C75BC8700C73E1A /* Vishnu.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +165,7 @@
 		653E1F061C7596C800C73E1A /* Vishnu */ = {
 			isa = PBXGroup;
 			children = (
+				653E21601C76B5DF00C73E1A /* Crypto */,
 				653E1F491C75987600C73E1A /* Extensions */,
 				653E1F071C7596C800C73E1A /* Vishnu.h */,
 				653E1F091C7596C800C73E1A /* Info.plist */,
@@ -195,6 +215,8 @@
 			isa = PBXGroup;
 			children = (
 				653E1F3F1C75986F00C73E1A /* String+DLExtension.swift */,
+				653E21661C76B61D00C73E1A /* NSData+CryptoExtension.swift */,
+				653E216B1C76B64400C73E1A /* String+CryptoExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -202,6 +224,7 @@
 		653E1F6E1C75997F00C73E1A /* CommonCrypto */ = {
 			isa = PBXGroup;
 			children = (
+				653E200D1C75B57300C73E1A /* Info.plist */,
 				653E1F6F1C75997F00C73E1A /* appletvos.modulemap */,
 				653E1F701C75997F00C73E1A /* appletvsimulator.modulemap */,
 				653E1F711C75997F00C73E1A /* CommonCrypto.xcconfig */,
@@ -220,6 +243,15 @@
 				653E1F7C1C759A0B00C73E1A /* libz.tbd */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		653E21601C76B5DF00C73E1A /* Crypto */ = {
+			isa = PBXGroup;
+			children = (
+				653E21581C76B57000C73E1A /* Digest.swift */,
+				653E21611C76B5F300C73E1A /* HMAC.swift */,
+			);
+			name = Crypto;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,6 +332,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				653E20DF1C75BC8200C73E1A /* PBXTargetDependency */,
 			);
 			name = Matsya;
 			productName = Matsya;
@@ -424,6 +457,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				653E200E1C75B57300C73E1A /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,7 +468,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				653E216C1C76B64400C73E1A /* String+CryptoExtension.swift in Sources */,
+				653E21591C76B57000C73E1A /* Digest.swift in Sources */,
 				653E1F4C1C75989700C73E1A /* String+DLExtension.swift in Sources */,
+				653E21621C76B5F300C73E1A /* HMAC.swift in Sources */,
+				653E21671C76B61D00C73E1A /* NSData+CryptoExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,6 +526,11 @@
 			isa = PBXTargetDependency;
 			target = 653E1F531C75996000C73E1A /* CommonCrypto */;
 			targetProxy = 653E1F7A1C759A0400C73E1A /* PBXContainerItemProxy */;
+		};
+		653E20DF1C75BC8200C73E1A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 653E1F031C7596C800C73E1A /* Vishnu */;
+			targetProxy = 653E20DE1C75BC8200C73E1A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -590,6 +633,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Vishnu/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.akupara.Vishnu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -606,6 +650,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Vishnu/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.akupara.Vishnu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -643,6 +688,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Matsya/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.akupara.Matsya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -661,6 +707,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Matsya/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.akupara.Matsya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -698,6 +745,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = CommonCrypto/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.akupara.CommonCrypto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -715,6 +763,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = CommonCrypto/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.akupara.CommonCrypto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -741,6 +790,7 @@
 				653E1F1A1C7596C800C73E1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		653E1F1B1C7596C800C73E1A /* Build configuration list for PBXNativeTarget "VishnuTests" */ = {
 			isa = XCConfigurationList;
@@ -749,6 +799,7 @@
 				653E1F1D1C7596C800C73E1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		653E1F351C75977200C73E1A /* Build configuration list for PBXNativeTarget "Matsya" */ = {
 			isa = XCConfigurationList;
@@ -757,6 +808,7 @@
 				653E1F371C75977200C73E1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		653E1F381C75977200C73E1A /* Build configuration list for PBXNativeTarget "MatsyaTests" */ = {
 			isa = XCConfigurationList;
@@ -765,6 +817,7 @@
 				653E1F3A1C75977200C73E1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		653E1F651C75996000C73E1A /* Build configuration list for PBXNativeTarget "CommonCrypto" */ = {
 			isa = XCConfigurationList;
@@ -773,6 +826,7 @@
 				653E1F671C75996000C73E1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

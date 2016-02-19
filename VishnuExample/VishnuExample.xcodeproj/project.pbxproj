@@ -18,6 +18,7 @@
 		653E1FE31C759AA400C73E1A /* Vishnu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653E1FCE1C759A8100C73E1A /* Vishnu.framework */; };
 		653E1FEA1C759B0200C73E1A /* SimpleTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 653E1FE91C759B0200C73E1A /* SimpleTitleCell.xib */; };
 		653E1FED1C759B3E00C73E1A /* SimpleTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653E1FEC1C759B3E00C73E1A /* SimpleTitleTableViewCell.swift */; };
+		653E21331C75C58600C73E1A /* Second.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 653E21321C75C58600C73E1A /* Second.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,7 @@
 		653E1FC51C759A8000C73E1A /* Vishnu.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Vishnu.xcodeproj; path = ../Vishnu/Vishnu.xcodeproj; sourceTree = "<group>"; };
 		653E1FE91C759B0200C73E1A /* SimpleTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleTitleCell.xib; sourceTree = "<group>"; };
 		653E1FEC1C759B3E00C73E1A /* SimpleTitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTitleTableViewCell.swift; sourceTree = "<group>"; };
+		653E21321C75C58600C73E1A /* Second.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Second.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 				653E1F9B1C759A7600C73E1A /* Assets.xcassets */,
 				653E1F9D1C759A7600C73E1A /* LaunchScreen.storyboard */,
 				653E1FA01C759A7600C73E1A /* Info.plist */,
+				653E21321C75C58600C73E1A /* Second.storyboard */,
 			);
 			path = VishnuExample;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				653E1FEA1C759B0200C73E1A /* SimpleTitleCell.xib in Resources */,
 				653E1F9F1C759A7600C73E1A /* LaunchScreen.storyboard in Resources */,
 				653E1F9C1C759A7600C73E1A /* Assets.xcassets in Resources */,
+				653E21331C75C58600C73E1A /* Second.storyboard in Resources */,
 				653E1F9A1C759A7600C73E1A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -547,6 +551,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = VishnuExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.akupara.VishnuExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -558,6 +563,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = VishnuExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.akupara.VishnuExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -631,6 +637,7 @@
 				653E1FBB1C759A7700C73E1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		653E1FBC1C759A7700C73E1A /* Build configuration list for PBXNativeTarget "VishnuExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -639,6 +646,7 @@
 				653E1FBE1C759A7700C73E1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		653E1FBF1C759A7700C73E1A /* Build configuration list for PBXNativeTarget "VishnuExampleUITests" */ = {
 			isa = XCConfigurationList;
@@ -647,6 +655,7 @@
 				653E1FC11C759A7700C73E1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
