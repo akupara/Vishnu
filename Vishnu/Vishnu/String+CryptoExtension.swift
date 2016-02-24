@@ -48,8 +48,8 @@ public extension String {
     
     // MARK: - HMAC
     
-    public func HMAC(key key: String, algorithm: Vishnu.HMAC.Algorithm) -> String? {
-        return Vishnu.HMAC.sign(message: self, algorithm: algorithm, key: key)
+    public func HMAC(key key: String, algorithm: Vishnu.AVishnuHMAC.Algorithm) -> String? {
+        return Vishnu.AVishnuHMAC.sign(message: self, algorithm: algorithm, key: key)
     }
     
     

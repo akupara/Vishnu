@@ -9,7 +9,7 @@
 import Foundation
 import CommonCrypto
 
-public struct HMAC {
+public struct AVishnuHMAC {
     
     // MARK: - Types
     

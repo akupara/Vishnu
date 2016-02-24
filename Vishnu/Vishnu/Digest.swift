@@ -8,7 +8,7 @@
 
 import CommonCrypto
 
-public struct Digest {
+public struct AVishnuDigest {
     public static func MD2(bytes bytes: UnsafePointer<Void>, length: UInt32) -> [UInt8] {
         var hash = [UInt8](count: Int(CC_MD2_DIGEST_LENGTH), repeatedValue: 0)
         CC_MD2(bytes, length, &hash)

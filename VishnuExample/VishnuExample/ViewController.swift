@@ -19,6 +19,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         tbDemoList.registerNib(UINib(nibName: "SimpleTitleCell", bundle: nil), forCellReuseIdentifier: "demoCell")
+
+        
+        let configure = AVishnuConfigure(file: "Test")
+        let value = configure.getBoolFromConfigureWithName("boolValue")
+        let string = configure.getStringFromConfigureWithName("AppId", defaultValue: nil, inGroup: "Unicorn")
+//        let TetstDictionary\\dic_level2\\dic_level3\boolValue dateValue dataValue stringValue dictValue arrayValue
+//        let boolValue = configure.getBoolFromPath("TestDictionary\\dic_level2\\dic_level3\\boolValue")
+//        let dateValue = configure.getDateFromPath("TestDictionary\\dic_level2\\dic_level3\\dateValue")
+//        let dataValue = configure.getDataFromPath("TestDictionary\\dic_level2\\dic_level3\\dataValue")
+//        let stringValue = configure.getStringFromPath("TestDictionary\\dic_level2\\dic_level3\\stringValue")
+//        let numberValue = configure.getNumberFromPath("TestDictionary\\dic_level2\\dic_level3\\numberValue")
+//        let arrayValue = configure.getArrayFromPath("TestDictionary\\dic_level2\\dic_level3\\arrayValue")
+//        let dictValue = configure.getDictonaryFromPath("TestDictionary\\dic_level2\\dic_level3\\dictValue")
     }
 
     override func didReceiveMemoryWarning() {
