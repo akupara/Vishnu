@@ -9,25 +9,18 @@
 import UIKit
 import Vishnu
 
-extension UIViewController {
+public extension UIViewController {
     
-    func presentInstantiateViewControllerWithIdentifier(identifier: String, animated: Bool, inStoryboardNamed name:String, withParams params:[String: AnyObject]? = nil) {
+    public func presentInstantiateViewControllerWithIdentifier(identifier: String, animated: Bool, inStoryboardNamed name:String, withParams params:[String: AnyObject]? = nil) {
         presentinstantiateViewControllerWithIdentifier(identifier, animated: animated, inStoryboard: storyboardNamed(name), withParams: params)
     }
     
-    func presentinstantiateViewControllerWithIdentifier(identifier: String, animated: Bool, inStoryboard: UIStoryboard, withParams params:[String:AnyObject]? = nil) {
+    public func presentinstantiateViewControllerWithIdentifier(identifier: String, animated: Bool, inStoryboard: UIStoryboard, withParams params:[String:AnyObject]? = nil) {
         presentViewController(instantiateViewControllerWithIdentifier(identifier, inStoryboard: inStoryboard), animated: animated, withParams: params)
     }
     
-    func presentViewController(controller:UIViewController, animated: Bool, withParams params:[String: AnyObject]? = nil) {
-        if let targetParams = params {
-            for (name, value) in targetParams {
-                let method = "set\(name.upperCaseFirst()):"
-                if controller.respondsToSelector(Selector(method)) {
-                    controller.setValue(value, forKey: name)
-                }
-            }
-        }
+    public func presentViewController(controller:UIViewController, animated: Bool, withParams params:[String: AnyObject]? = nil, inViewController: UIViewController? = nil) {
+        setupParams(controller, params: params)
         if let navi = navigationController {
             navi.pushViewController(controller, animated: animated)
         } else {
@@ -35,19 +28,30 @@ extension UIViewController {
         }
     }
     
-    private func storyboardNamed(name:String, bundle: NSBundle? = nil) -> UIStoryboard {
+    internal func storyboardNamed(name:String, bundle: NSBundle? = nil) -> UIStoryboard {
         return UIStoryboard(name: name, bundle: bundle)
     }
 
-    private func instantiateViewControllerWithIdentifier(identifier:String, inStoryboard: UIStoryboard) -> UIViewController {
+    internal func instantiateViewControllerWithIdentifier(identifier:String, inStoryboard: UIStoryboard) -> UIViewController {
         return inStoryboard.instantiateViewControllerWithIdentifier(identifier)
     }
     
-    private func instantiateViewControllerWithIdentifier(identifier:String, inStoryboardNamed name: String, bundle:NSBundle? = nil) -> UIViewController {
+    internal func instantiateViewControllerWithIdentifier(identifier:String, inStoryboardNamed name: String, bundle:NSBundle? = nil) -> UIViewController {
         return instantiateViewControllerWithIdentifier(identifier, inStoryboard: storyboardNamed(name, bundle: bundle))
     }
     
-    private func instantiateInitialViewControllerInStoryboardNamed(name:String, bundle:NSBundle? = nil) -> UIViewController? {
+    internal func instantiateInitialViewControllerInStoryboardNamed(name:String, bundle:NSBundle? = nil) -> UIViewController? {
         return storyboardNamed(name, bundle: bundle).instantiateInitialViewController()
+    }
+    
+    internal func setupParams(target:UIViewController, params:[String:AnyObject]?) {
+        if params != nil {
+            for (name, value) in params! {
+                let method = "set\(name.upperCaseFirst()):"
+                if target.respondsToSelector(Selector(method)) {
+                    target.setValue(value, forKey: name)
+                }
+            }
+        }
     }
 }
