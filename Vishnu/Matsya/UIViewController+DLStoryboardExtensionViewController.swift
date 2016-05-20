@@ -11,20 +11,29 @@ import Vishnu
 
 public extension UIViewController {
     
-    public func presentInstantiateViewControllerWithIdentifier(identifier: String, animated: Bool, inStoryboardNamed name:String, withParams params:[String: AnyObject]? = nil) {
-        presentinstantiateViewControllerWithIdentifier(identifier, animated: animated, inStoryboard: storyboardNamed(name), withParams: params)
+    public func presentInstantiateViewControllerWithIdentifier(identifier: String, animated: Bool, inStoryboardNamed name:String, withParams params:[String: AnyObject]? = nil, inViewController: UIViewController? = nil) {
+        presentinstantiateViewControllerWithIdentifier(identifier, animated: animated, inStoryboard: storyboardNamed(name), withParams: params, inViewController: inViewController)
     }
     
-    public func presentinstantiateViewControllerWithIdentifier(identifier: String, animated: Bool, inStoryboard: UIStoryboard, withParams params:[String:AnyObject]? = nil) {
-        presentViewController(instantiateViewControllerWithIdentifier(identifier, inStoryboard: inStoryboard), animated: animated, withParams: params)
+    public func presentinstantiateViewControllerWithIdentifier(identifier: String, animated: Bool, inStoryboard: UIStoryboard, withParams params:[String:AnyObject]? = nil, inViewController: UIViewController? = nil) {
+        presentViewController(instantiateViewControllerWithIdentifier(identifier, inStoryboard: inStoryboard), animated: animated, withParams: params, inViewController: inViewController)
     }
     
     public func presentViewController(controller:UIViewController, animated: Bool, withParams params:[String: AnyObject]? = nil, inViewController: UIViewController? = nil) {
         setupParams(controller, params: params)
-        if let navi = navigationController {
+        let sourceController:UIViewController!
+        if inViewController != nil {
+            sourceController = inViewController
+        } else {
+            sourceController = self
+        }
+        
+        if let navi = sourceController as? UINavigationController {
+            navi.pushViewController(controller, animated: animated)
+        } else if let navi = sourceController.navigationController {
             navi.pushViewController(controller, animated: animated)
         } else {
-            presentViewController(controller, animated: animated, completion: nil)
+            sourceController.presentViewController(controller, animated: animated, completion: nil)
         }
     }
     

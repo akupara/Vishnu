@@ -26,7 +26,37 @@ public class MatsyaContainerViewController: UIViewController {
     
     private var currentPanelStatus:PanelStatus = .BothCollapsed
     
-    static let targetPosRate:CGFloat = 0.7
+    internal var targetPosRate:CGFloat = 0.7
+    internal var targetSizeScaleRate:CGFloat = 1
+    
+    public var positionRate:CGFloat {
+        get {
+            return targetPosRate
+        }
+        set {
+            if newValue > 1 || newValue < 0 {
+                targetPosRate = 0.7
+            } else {
+                targetPosRate = newValue
+            }
+        }
+    }
+    
+    public var mainViewScaleRate:CGFloat {
+        get {
+            return targetSizeScaleRate
+        }
+        set {
+            if newValue > 1 || newValue < 0 {
+                targetSizeScaleRate = 1
+            } else {
+                targetSizeScaleRate = newValue
+            }
+        }
+    }
+    
+    public var backgroundImage:UIImage! = nil
+    public var backgroundView:UIView! = nil
     
     static let animationDuration:NSTimeInterval = 0.5
     static let springWithDamping:CGFloat = 0.8
@@ -126,7 +156,7 @@ public class MatsyaContainerViewController: UIViewController {
             hidePanel(rightPanel)
         } else if let _ = rightPanel {
             currentPanelStatus = .RightExpaned
-            let targetPosition = (0 - (view.frame.size.width * MatsyaContainerViewController.targetPosRate))
+            let targetPosition = (0 - (view.frame.size.width * targetPosRate))
             showPanel(rightPanel, mainViewPosition: targetPosition)
         }
     }
@@ -135,7 +165,7 @@ public class MatsyaContainerViewController: UIViewController {
         if currentPanelStatus == .LeftExpanded {
             hidePanel(leftPanel)
         } else if let _ = leftPanel {
-            let targetPosition = view.frame.size.width * MatsyaContainerViewController.targetPosRate
+            let targetPosition = view.frame.size.width * targetPosRate
             showPanel(leftPanel, mainViewPosition: targetPosition)
         }
     }
@@ -148,43 +178,39 @@ public class MatsyaContainerViewController: UIViewController {
         }
     }
     
-    public func presentViewController(viewController: UIViewController, params:[String:AnyObject]! = nil) {
-        setupParams(viewController, params: params)
-        if mainNavigationController != nil {
-            collapsePanels()
-            mainNavigationController.pushViewController(viewController, animated: true)
-            //            collapsePanels() {
-            //               [unowned self] (finished:Bool) in
-            //                self.mainNavigationController.pushViewController(viewController, animated: true)
-            //            }
-        }
+    public func presentViewController(viewController: UIViewController, animated:Bool, params:[String:AnyObject]! = nil) {
+        super.presentViewController(viewController, animated: animated, withParams: params, inViewController: mainNavigationController)
     }
     
-    public func presentViewControllerInStoryboard(storyboard:UIStoryboard, withIdentifier identifier:String, params: [String: AnyObject]! = nil) {
+    public func presentViewControllerInStoryboard(storyboard:UIStoryboard, withIdentifier identifier:String, animated:Bool, params: [String: AnyObject]! = nil) {
         let viewController = storyboard.instantiateViewControllerWithIdentifier(identifier)
-        presentViewController(viewController, params: params)
+        presentViewController(viewController, animated: animated, params: params)
     }
     
-    public func presentInitialViewControllerInStoryboard(storyboard:UIStoryboard, params:[String:AnyObject]! = nil) {
+    public func presentInitialViewControllerInStoryboard(storyboard:UIStoryboard, animated:Bool, params:[String:AnyObject]! = nil) {
         if let viewController = storyboard.instantiateInitialViewController() {
-            presentViewController(viewController, params: params)
+            presentViewController(viewController, animated: animated, params: params)
         }
     }
     
     // MARK: - internal messages
-    internal func animateMainViewXPosition(targetPosition:CGFloat, completion: ((Bool) -> Void)! = nil) {
+    internal func animateMainView(targetPosition:CGFloat, newSize: CGSize! = nil, completion: ((Bool) -> Void)! = nil) {
         UIView.animateWithDuration(MatsyaContainerViewController.animationDuration, delay: 0.0,
             usingSpringWithDamping: MatsyaContainerViewController.springWithDamping,
             initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
                 [unowned self] in
                 self.mainNavigationController.view.frame.origin.x = targetPosition
+                if newSize != nil {
+                    self.mainNavigationController.view.frame.size = newSize
+                    self.mainNavigationController.view.layoutIfNeeded()
+                }
             }, completion: completion)
     }
     
     internal func hidePanel(panel:UIViewController?, completion: ((Bool) -> Void)! = nil) {
         currentPanelStatus = .BothCollapsed
         if let viewController = panel {
-            animateMainViewXPosition(0.0) {
+            animateMainView(0.0, newSize: view.frame.size) {
                 [unowned self] (finished:Bool) in
                 self.showShadowForMainViewController(false)
                 viewController.view.removeFromSuperview()
@@ -201,9 +227,17 @@ public class MatsyaContainerViewController: UIViewController {
             view.insertSubview(viewController.view, belowSubview: mainNavigationController.view)
             addChildViewController(viewController)
             viewController.didMoveToParentViewController(self)
+            let newSize:CGSize!
+            if targetSizeScaleRate < 1 {
+                let newWidth = mainNavigationController.view.frame.width * targetSizeScaleRate
+                let newHeight = mainNavigationController.view.frame.height * targetSizeScaleRate
+                newSize = CGSizeMake(newWidth, newHeight)
+            } else {
+                newSize = nil
+            }
             showShadowForMainViewController(true)
             layoutPanelForPosition(position, panel: panel)
-            animateMainViewXPosition(position)
+            animateMainView(position, newSize: newSize)
         }
     }
     
@@ -279,6 +313,25 @@ public class MatsyaContainerViewController: UIViewController {
             } else if currentPanelStatus == .LeftExpanded {
                 hidePanel(leftPanel)
             }
+        }
+    }
+    
+    //MARK: - Background
+    private func setupBackgroundImage() {
+        if backgroundImage != nil {
+            //Remove previous background view
+            if backgroundView != nil {
+                backgroundView.removeFromSuperview()
+                backgroundView = nil
+            }
+            let imageView = UIImageView(image: backgroundImage)
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            
+            view.insertSubview(imageView, atIndex: 0)
+            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[imageView]|", options: [NSLayoutFormatOptions.AlignAllCenterX, NSLayoutFormatOptions.AlignAllCenterY], metrics: nil, views: ["imageView": imageView]))
+            imageView.addConstraint(NSLayoutConstraint(item: imageView, attribute: .Height, relatedBy: .Equal, toItem: imageView, attribute: .Width, multiplier: backgroundImage.size.height/backgroundImage.size.width, constant: 0))
+            
+//            let rate = backgroundImage.size.width
         }
     }
 
