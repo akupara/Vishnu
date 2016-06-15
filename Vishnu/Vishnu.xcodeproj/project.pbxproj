@@ -38,6 +38,7 @@
 		65CFD1E11D10F9F50097893B /* UIColor+LerpExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CFD1E01D10F9F40097893B /* UIColor+LerpExtension.swift */; };
 		65CFD2141D10FA4A0097893B /* NumericType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CFD2131D10FA4A0097893B /* NumericType.swift */; };
 		65CFD2B01D10FAB00097893B /* Vishnu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653E1F041C7596C800C73E1A /* Vishnu.framework */; };
+		65CFD3091D10FCBC0097893B /* KurmaBluetoothCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CFD3081D10FCBC0097893B /* KurmaBluetoothCommon.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +125,7 @@
 		65CFD1A91D10F8080097893B /* CBCharacteristic+KurmaExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CBCharacteristic+KurmaExtension.swift"; sourceTree = "<group>"; };
 		65CFD1E01D10F9F40097893B /* UIColor+LerpExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+LerpExtension.swift"; sourceTree = "<group>"; };
 		65CFD2131D10FA4A0097893B /* NumericType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericType.swift; sourceTree = "<group>"; };
+		65CFD3081D10FCBC0097893B /* KurmaBluetoothCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KurmaBluetoothCommon.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -361,6 +363,7 @@
 		65CFD18F1D10F7DD0097893B /* Bluetooth */ = {
 			isa = PBXGroup;
 			children = (
+				65CFD3081D10FCBC0097893B /* KurmaBluetoothCommon.swift */,
 			);
 			name = Bluetooth;
 			sourceTree = "<group>";
@@ -697,6 +700,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65CFD3091D10FCBC0097893B /* KurmaBluetoothCommon.swift in Sources */,
 				65CFD1AA1D10F8080097893B /* CBCharacteristic+KurmaExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
