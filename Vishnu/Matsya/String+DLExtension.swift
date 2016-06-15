@@ -25,7 +25,7 @@ public extension String {
 //        return digestHex
 //    }
     
-    func upperCaseFirst() -> String {
+    public func upperCaseFirst() -> String {
         if characters.count < 1 {
             return ""
         }

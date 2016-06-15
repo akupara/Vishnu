@@ -270,7 +270,7 @@ public class MatsyaContainerViewController: UIViewController {
     }
     
     internal func setupSwipeGestureRecognizerViewController(viewController:UIViewController, direction:UISwipeGestureRecognizerDirection) -> UISwipeGestureRecognizer {
-        let gesture = UISwipeGestureRecognizer(target: self, action: "gestureSwipeHandler:")
+        let gesture = UISwipeGestureRecognizer(target: self, action: #selector(MatsyaContainerViewController.gestureSwipeHandler(_:)))
         gesture.numberOfTouchesRequired = 1
         gesture.direction = direction
         viewController.view.addGestureRecognizer(gesture)

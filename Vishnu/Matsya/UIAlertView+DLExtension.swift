@@ -75,7 +75,7 @@ public extension UIAlertView {
                 retain.completionHandler(alertView, buttonIndex)
                 
                 if let dele = originalDelegate {
-                    if dele.respondsToSelector("alertView:didDismissWithButtonIndex:") {
+                    if dele.respondsToSelector(#selector(UIAlertViewDelegate.alertView(_:didDismissWithButtonIndex:))) {
                         dele.alertView(alertView, didDismissWithButtonIndex: buttonIndex)
                     }
                 }
