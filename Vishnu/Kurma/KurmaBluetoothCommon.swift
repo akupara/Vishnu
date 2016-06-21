@@ -11,7 +11,7 @@
 import Foundation
 import CoreBluetooth
 
-@objc public enum KurmaBluetoothGATTServices:String {
+public enum KurmaBluetoothGATTServices:String {
     case AlertNotificationService = "0x1811"
     case AutomationIO = "0x1815"
     case BatteryService = "0x180F"
@@ -105,7 +105,7 @@ import CoreBluetooth
     }
 }
 
-@objc public enum KurmaBluetoothGATTCharacteristices:String {
+public enum KurmaBluetoothGATTCharacteristices:String {
     case AerobicHeartRateLowerLimit = "0x2A7E"
     case AerobicHeartRateUpperLimit = "0x2A84"
     case AerobicThreshold = "0x2A7F"

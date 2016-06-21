@@ -39,6 +39,8 @@
 		65CFD2141D10FA4A0097893B /* NumericType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CFD2131D10FA4A0097893B /* NumericType.swift */; };
 		65CFD2B01D10FAB00097893B /* Vishnu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653E1F041C7596C800C73E1A /* Vishnu.framework */; };
 		65CFD3091D10FCBC0097893B /* KurmaBluetoothCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CFD3081D10FCBC0097893B /* KurmaBluetoothCommon.swift */; };
+		65CFD3FC1D113DC50097893B /* KurmaCentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CFD3FB1D113DC50097893B /* KurmaCentralManager.swift */; };
+		65CFD4BA1D114B2E0097893B /* KurmaPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CFD4B91D114B2E0097893B /* KurmaPeripheral.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +128,8 @@
 		65CFD1E01D10F9F40097893B /* UIColor+LerpExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+LerpExtension.swift"; sourceTree = "<group>"; };
 		65CFD2131D10FA4A0097893B /* NumericType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericType.swift; sourceTree = "<group>"; };
 		65CFD3081D10FCBC0097893B /* KurmaBluetoothCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KurmaBluetoothCommon.swift; sourceTree = "<group>"; };
+		65CFD3FB1D113DC50097893B /* KurmaCentralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KurmaCentralManager.swift; sourceTree = "<group>"; };
+		65CFD4B91D114B2E0097893B /* KurmaPeripheral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KurmaPeripheral.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -364,6 +368,8 @@
 			isa = PBXGroup;
 			children = (
 				65CFD3081D10FCBC0097893B /* KurmaBluetoothCommon.swift */,
+				65CFD3FB1D113DC50097893B /* KurmaCentralManager.swift */,
+				65CFD4B91D114B2E0097893B /* KurmaPeripheral.swift */,
 			);
 			name = Bluetooth;
 			sourceTree = "<group>";
@@ -700,7 +706,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65CFD4BA1D114B2E0097893B /* KurmaPeripheral.swift in Sources */,
 				65CFD3091D10FCBC0097893B /* KurmaBluetoothCommon.swift in Sources */,
+				65CFD3FC1D113DC50097893B /* KurmaCentralManager.swift in Sources */,
 				65CFD1AA1D10F8080097893B /* CBCharacteristic+KurmaExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
