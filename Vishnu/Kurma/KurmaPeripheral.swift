@@ -410,6 +410,7 @@ import CoreBluetooth
     
     public func removeTarget<T:NSObject where T:KurmaPeripheralEventsHandler>(target:T, forEvent event:KurmaPeripheralEvents) {
         guard var handlers = _targets[event.eventKey] else {
+            return
         }
         handlers.remove(target)
     }
