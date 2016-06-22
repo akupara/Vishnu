@@ -67,6 +67,18 @@ import Matsya
         }
     }
     
+    public var discoveredPeripheralUUIDs:[String] {
+        get {
+            return (_discoveredPeripheralsDictionary as NSDictionary).allKeys as! [String]
+        }
+    }
+    
+    public var connectedPeripheralUUIDs:[String] {
+        get {
+            return (_connectedPeripheralsDictionary as NSDictionary).allKeys as! [String]
+        }
+    }
+    
     //public settings
     public var filterServiceUUIDs:[CBUUID]?
     
