@@ -404,6 +404,12 @@ import CoreBluetooth
         (_targets[event.eventKey]!).insert(target)
     }
     
+    public func addTarget<T:NSObject where T:KurmaPeripheralEventsHandler>(target:T) {
+        for event in KurmaPeripheralEvents.allEvents {
+            addTarget(target, forEvent: event)
+        }
+    }
+    
     public func removeTarget<T:NSObject where T:KurmaPeripheralEventsHandler>(target:T, forEvent event:KurmaPeripheralEvents) {
         guard let _ = _targets[event.eventKey] else {
             return

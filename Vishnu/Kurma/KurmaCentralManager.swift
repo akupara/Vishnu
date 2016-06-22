@@ -202,7 +202,7 @@ import Matsya
                 guard let t = target as? KurmaCentralManagerEventsHandler else {
                     continue
                 }
-                t.centralManager!(self, statusUpdated: status)
+                t.centralManager?(self, statusUpdated: status)
             }
         }
     }
@@ -291,6 +291,12 @@ import Matsya
         (_targets[event.eventKey]!).insert(target)
     }
     
+    public func addTarget<T:NSObject where T:KurmaCentralManagerEventsHandler>(target:T) {
+        for event in KurmaCentralManagerEvents.allEvents {
+            addTarget(target, forEvent: event)
+        }
+    }
+    
     public func removeTarget<T:NSObject where T:KurmaCentralManagerEventsHandler>(target:T, forEvent event: KurmaCentralManagerEvents) {
         guard let _ = _targets[event.eventKey] else {
             return
@@ -343,6 +349,12 @@ extension KurmaCentralManager {
     public func addTarget<T:NSObject where T:KurmaPeripheralEventsHandler>(target:T, forEvent event:KurmaPeripheralEvents, forPeripheral peripheral:KurmaPeripheral) {
         if _connectedPeripherals.contains(peripheral) {
             peripheral.addTarget(target, forEvent: event)
+        }
+    }
+    
+    public func addTarget<T:NSObject where T:KurmaPeripheralEventsHandler>(target:T, forPeripheral peripheral:KurmaPeripheral) {
+        if _connectedPeripherals.contains(peripheral) {
+            peripheral.addTarget(target)
         }
     }
     
