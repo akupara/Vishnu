@@ -398,21 +398,17 @@ import CoreBluetooth
     
     //MARK: - Event handler management
     public func addTarget<T:NSObject where T:KurmaPeripheralEventsHandler>(target:T, forEvent event:KurmaPeripheralEvents) {
-        var handlers:Set<NSObject>!
-        if let t = _targets[event.eventKey] {
-            handlers = t
-        } else {
-            handlers = Set()
-            _targets[event.eventKey] = handlers
+        if false == _targets.keys.contains(event.eventKey) {
+            _targets[event.eventKey] = Set()
         }
-        handlers.insert(target)
+        (_targets[event.eventKey]!).insert(target)
     }
     
     public func removeTarget<T:NSObject where T:KurmaPeripheralEventsHandler>(target:T, forEvent event:KurmaPeripheralEvents) {
-        guard var handlers = _targets[event.eventKey] else {
+        guard let _ = _targets[event.eventKey] else {
             return
         }
-        handlers.remove(target)
+        (_targets[event.eventKey]!).remove(target)
     }
     
     public func removeTarget<T:NSObject where T:KurmaPeripheralEventsHandler>(target:T) {

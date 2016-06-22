@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		65017A5C1CEEFA1500AD9DD2 /* MastyaTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65017A5B1CEEFA1500AD9DD2 /* MastyaTabBarController.swift */; };
+		65017A5C1CEEFA1500AD9DD2 /* MatsyaTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65017A5B1CEEFA1500AD9DD2 /* MatsyaTabBarController.swift */; };
 		65060BBB1C76F35300CFE032 /* NSData+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65060BBA1C76F35300CFE032 /* NSData+Extension.swift */; };
 		650CCF351C914ED700231340 /* CRC16.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650CCF341C914ED700231340 /* CRC16.swift */; };
 		652A6EAC1C902DD800A07E4F /* MatsyaContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652A6EAB1C902DD800A07E4F /* MatsyaContainerViewController.swift */; };
@@ -92,7 +92,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		65017A5B1CEEFA1500AD9DD2 /* MastyaTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastyaTabBarController.swift; sourceTree = "<group>"; };
+		65017A5B1CEEFA1500AD9DD2 /* MatsyaTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatsyaTabBarController.swift; sourceTree = "<group>"; };
 		65060BBA1C76F35300CFE032 /* NSData+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+Extension.swift"; sourceTree = "<group>"; };
 		650CCF341C914ED700231340 /* CRC16.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CRC16.swift; sourceTree = "<group>"; };
 		652A6EAB1C902DD800A07E4F /* MatsyaContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatsyaContainerViewController.swift; sourceTree = "<group>"; };
@@ -206,7 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				652A6EAB1C902DD800A07E4F /* MatsyaContainerViewController.swift */,
-				65017A5B1CEEFA1500AD9DD2 /* MastyaTabBarController.swift */,
+				65017A5B1CEEFA1500AD9DD2 /* MatsyaTabBarController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -692,7 +692,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65017A5C1CEEFA1500AD9DD2 /* MastyaTabBarController.swift in Sources */,
+				65017A5C1CEEFA1500AD9DD2 /* MatsyaTabBarController.swift in Sources */,
 				653E1F441C75986F00C73E1A /* UIViewController+DLStoryboardExtensionViewController.swift in Sources */,
 				65CFD1E11D10F9F50097893B /* UIColor+LerpExtension.swift in Sources */,
 				653E1F461C75986F00C73E1A /* UIViewController+DLAlertExtension.swift in Sources */,

@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct MastyaTabConfig {
+struct MatsyaTabConfig {
     var storyboardName:String
     var viewControllerName:String? = nil
     var bundle:NSBundle? = nil
@@ -41,12 +41,12 @@ struct MastyaTabConfig {
     }
 }
 
-@IBDesignable public class MastyaTabBarController: UITabBarController {
+@IBDesignable public class MatsyaTabBarController: UITabBarController {
     
     @IBInspectable public var loadFromConfigure:Bool = false
     
     //Default tabs
-    private var tabs:[MastyaTabConfig] = []
+    private var tabs:[MatsyaTabConfig] = []
     static let tabConfigureName = "MastyaTabBarController"
     
     override public func viewDidLoad() {
@@ -98,7 +98,7 @@ struct MastyaTabConfig {
             return
         }
         
-        if let tabsInConfig = appConfigures[MastyaTabBarController.tabConfigureName] as? [[String:String]] {
+        if let tabsInConfig = appConfigures[MatsyaTabBarController.tabConfigureName] as? [[String:String]] {
             for tab in tabsInConfig {
                 if let storyboardName = tab["Storyboard"] {
                     if storyboardName.isEmpty {
@@ -121,7 +121,7 @@ struct MastyaTabConfig {
                         }
                     }
                     
-                    let mastyaTab = MastyaTabConfig(storyboardName: storyboardName, inBundle: bundle, withViewControllerName: controllerName, isInitialViewController: isInitialController)
+                    let mastyaTab = MatsyaTabConfig(storyboardName: storyboardName, inBundle: bundle, withViewControllerName: controllerName, isInitialViewController: isInitialController)
                     tabs.append(mastyaTab)
                 }
             }
