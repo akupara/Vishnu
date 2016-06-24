@@ -73,6 +73,12 @@ import CoreBluetooth
         }
     }
     
+    public var services:[CBUUID: KurmaService] {
+        get {
+            return _services
+        }
+    }
+    
     init(peripheral:CBPeripheral) {
         _peripheral = peripheral
         super.init()
@@ -213,7 +219,7 @@ import CoreBluetooth
         if peripheral != _peripheral {
             return
         }
-        
+
         if let handlers = _targets[KurmaPeripheralEvents.CharacteristicValueUpdated.eventKey] {
             for handler in handlers {
                 guard let h = handler as? KurmaPeripheralEventsHandler else {
@@ -223,7 +229,7 @@ import CoreBluetooth
             }
         }
     }
-    
+        
     @objc public func peripheral(peripheral: CBPeripheral, didUpdateValueForDescriptor descriptor: CBDescriptor, error: NSError?) {
         if peripheral != _peripheral {
             return
@@ -311,30 +317,127 @@ import CoreBluetooth
     }
     
     @objc(writeData:toCharacteristicWithUUID:inServiceWithUUID:type:)
-    public func writeData(data:NSData, forCharacteristic characteristic:CBUUID, inService service:CBUUID, type:CBCharacteristicWriteType) {
+    public func writeData(data:NSData, forCharacteristic characteristic:CBUUID, inService service:CBUUID, type: CBCharacteristicWriteType) {
         guard let characteristics = _services[service]?.txCharacteristics, let kService = _services[service] else {
             return
         }
         
-        for c in characteristics.values {
-            if c == characteristic {
-                if let handlers = _targets[KurmaPeripheralEvents.WillWirteValueForCharacteristic.eventKey] {
-                    for handler in handlers {
-                        guard let h = handler as? KurmaPeripheralEventsHandler else {
-                            continue
-                        }
-                        h.peripheral?(self, willWriteData: data, forCharacteristic: c, inService: kService, type: type)
-                    }
-                }
-                _peripheral.writeValue(data, forCharacteristic: c, type: type)
-                break
-            }
-        }
+        if let c = characteristics[characteristic] {
+            writeData(data, forCharacteristic: c, inService: kService, type: type)
+        }        
     }
     
     public func writeData(data:NSData, forDescriptor descriptor:CBDescriptor) {
         //TODO: implement this
     }
+    
+    
+    //MARK: - Read value from peripheral
+    public func readValueForCharacteristic(characteristic:CBCharacteristic, inService service: KurmaService) {
+        if service.txCharacteristics.values.contains(characteristic) {
+            _peripheral.readValueForCharacteristic(characteristic)
+        }
+    }
+    
+    @objc(readValueForCharacteristicWithUUID:inServiceWithUUID:)
+    public func readValueForCharacteristic(characteristic:CBUUID, inService service:CBUUID) {
+        guard let kService = _services[service] else {
+            return
+        }
+        
+        if let c = kService.txCharacteristics[characteristic] {
+            readValueForCharacteristic(c, inService: kService)
+        }
+    }
+    
+    @objc(readValueForCharacteristicWithUUIDString:inServiceWithUUIDString:)
+    public func readValueForCharacteristic(characteristic:String, inService service:String) {
+        let characteristicUUID = CBUUID(string: characteristic)
+        let serviceUUID = CBUUID(string: service)
+        readValueForCharacteristic(characteristicUUID, inService: serviceUUID)
+    }
+    
+    @objc(readValueForCharacteristicWithUUIDString:inServiceWithUUID:)
+    public func readValueForCharacteristic(characteristic:String, inService service:CBUUID) {
+        let characteristicUUID = CBUUID(string: characteristic)
+        readValueForCharacteristic(characteristicUUID, inService: service)
+    }
+    
+    @objc(readValueForCharacteristicWithUUIDString:)
+    public func readValueForCharacteristic(characteristic:String) {
+        for (serviceUUID, _) in _services {
+            readValueForCharacteristic(characteristic, inService: serviceUUID)
+        }
+    }
+
+    @objc(readValueForCharacteristicWithUUID:)
+    public func readValueForCharacteristic(characteristic:CBUUID) {
+        for (serviceUUID, _) in _services {
+            readValueForCharacteristic(characteristic, inService: serviceUUID)
+        }
+    }
+    
+    public func readValueForCharacteristic(characterisitc:CBCharacteristic) {
+        for (_, service) in _services {
+            readValueForCharacteristic(characterisitc, inService: service)
+        }
+    }
+    
+    public func readValueForDescriptor(descriptor:CBDescriptor) {
+        //TODO: implement this
+    }
+    
+    //MARK: - notification set
+    public func setNotifyValue(enabled:Bool, forCharacteristic characteristic: CBCharacteristic, inService service: KurmaService) {
+        if service.notifyCharacteristics.values.contains(characteristic) {
+            _peripheral.setNotifyValue(enabled, forCharacteristic: characteristic)
+        }
+    }
+    
+    @objc(setNotifyValue:forCharacteristicWithUUID:inServiceWithUUID:)
+    public func setNotifyValue(enabled: Bool, forCharacteristic characteristic:CBUUID, inService service:CBUUID) {
+        guard let kService = _services[service] else {
+            return
+        }
+        
+        if let c = kService.notifyCharacteristics[characteristic] {
+            setNotifyValue(enabled, forCharacteristic: c, inService: kService)
+        }
+    }
+    
+    @objc(setNotifyValue:forCharacteristicWithUUIDString:inServiceWithUUIDString:)
+    public func setNotifyValue(enabled:Bool, forCharacteristic characteristic:String, inService service:String) {
+        let characteristicUUID = CBUUID(string:characteristic)
+        let serviceUUID = CBUUID(string: service)
+        setNotifyValue(enabled, forCharacteristic: characteristicUUID, inService: serviceUUID)
+    }
+    
+    @objc(setNotifyValue:forCharacteristicWithUUIDString:inServiceWithUUID:)
+    public func setNotifyValue(enabled:Bool, forCharacteristic characteristic:String, inService service:CBUUID) {
+        let characteristicUUID = CBUUID(string:characteristic)
+        setNotifyValue(enabled, forCharacteristic: characteristicUUID, inService: service)
+    }
+
+    public func setNotifyValue(enabled:Bool, forCharacteristic characteristic:CBCharacteristic) {
+        for (_, service) in _services {
+            setNotifyValue(enabled, forCharacteristic: characteristic, inService: service)
+        }
+    }
+    
+    @objc(setNotifyValue:forCharacteristicWithUUID:)
+    public func setNotifyValue(enabled:Bool, forCharacteristic characteristic:CBUUID) {
+        for (serviceUUID, _) in _services {
+            setNotifyValue(enabled, forCharacteristic: characteristic, inService: serviceUUID)
+        }
+    }
+    
+    @objc(setNotifyValue:forCharacteristicWithUUIDString:)
+    public func setNotifyValue(enabled:Bool, forCharacteristic characteristic:String) {
+        for (serviceUUID, _) in _services {
+            setNotifyValue(enabled, forCharacteristic: characteristic, inService: serviceUUID)
+        }
+    }
+    
     
     //MARK: - Peripheral operation
     public func discoverCharacteristics(characteristicUUIDs:[CBUUID]?, forService service:CBService) {

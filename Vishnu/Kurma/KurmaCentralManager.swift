@@ -158,9 +158,9 @@ import Matsya
     }
     
     @objc(disconnectFromPeripheral:)
-    public func disconnect(peripheral:CBPeripheral) {
+    public func disconnect(peripheral:KurmaPeripheral) {
         if let _ = _connectedPeripheralsDictionary[peripheral.identifier.UUIDString] {
-            _centralManager.cancelPeripheralConnection(peripheral)
+            _centralManager.cancelPeripheralConnection(peripheral.peripheral)
         }
     }
     
