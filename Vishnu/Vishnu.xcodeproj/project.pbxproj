@@ -11,7 +11,6 @@
 		65060BBB1C76F35300CFE032 /* NSData+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65060BBA1C76F35300CFE032 /* NSData+Extension.swift */; };
 		650CCF351C914ED700231340 /* CRC16.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650CCF341C914ED700231340 /* CRC16.swift */; };
 		652A6EAC1C902DD800A07E4F /* MatsyaContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652A6EAB1C902DD800A07E4F /* MatsyaContainerViewController.swift */; };
-		653E1F081C7596C800C73E1A /* Vishnu.h in Headers */ = {isa = PBXBuildFile; fileRef = 653E1F071C7596C800C73E1A /* Vishnu.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		653E1F0F1C7596C800C73E1A /* Vishnu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653E1F041C7596C800C73E1A /* Vishnu.framework */; };
 		653E1F141C7596C800C73E1A /* VishnuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653E1F131C7596C800C73E1A /* VishnuTests.swift */; };
 		653E1F2E1C75977200C73E1A /* Matsya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653E1F241C75977100C73E1A /* Matsya.framework */; };
@@ -39,8 +38,9 @@
 		65CFD3091D10FCBC0097893B /* KurmaBluetoothCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CFD3081D10FCBC0097893B /* KurmaBluetoothCommon.swift */; };
 		65CFD3FC1D113DC50097893B /* KurmaCentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CFD3FB1D113DC50097893B /* KurmaCentralManager.swift */; };
 		65CFD4BA1D114B2E0097893B /* KurmaPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CFD4B91D114B2E0097893B /* KurmaPeripheral.swift */; };
-		65DFBED21D1CE13300DECACA /* Matsya.h in Headers */ = {isa = PBXBuildFile; fileRef = 653E1F261C75977100C73E1A /* Matsya.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65DFBEE11D1CE13500DECACA /* Kurma.h in Headers */ = {isa = PBXBuildFile; fileRef = 65CFD1611D10F7AC0097893B /* Kurma.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		65EF50E91D20CB810068A734 /* Matsya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653E1F241C75977100C73E1A /* Matsya.framework */; };
+		65EF50EB1D20CB850068A734 /* Kurma.h in Headers */ = {isa = PBXBuildFile; fileRef = 65CFD1611D10F7AC0097893B /* Kurma.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -184,6 +184,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65EF50E91D20CB810068A734 /* Matsya.framework in Frameworks */,
 				65CFD2B01D10FAB00097893B /* Vishnu.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -388,8 +389,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				653E1F081C7596C800C73E1A /* Vishnu.h in Headers */,
-				65DFBED21D1CE13300DECACA /* Matsya.h in Headers */,
 				65DFBEE11D1CE13500DECACA /* Kurma.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,6 +398,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65B947AA1D19337100CA5969 /* Matsya.h in Headers */,
+				65EF50EB1D20CB850068A734 /* Kurma.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
