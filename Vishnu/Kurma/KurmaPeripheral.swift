@@ -13,7 +13,7 @@ import CoreBluetooth
     private var _peripheral:CBPeripheral
     
 //  property
-    private var _name:String?
+    private var _name:String = ""
     private var _deviceInformations:[String: String] = [:]
     
     private var _services:[CBUUID:KurmaService] = [:]
@@ -61,7 +61,7 @@ import CoreBluetooth
         }
     }
     
-    public var name:String? {
+    public var name:String {
         get {
             return _name
         }
