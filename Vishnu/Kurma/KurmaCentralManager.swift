@@ -23,6 +23,7 @@ import Matsya
             }
         }
     }
+    
     private var _discoveredPeripheralsDictionary:[String: KurmaPeripheral] = [:]
     private var _discoveredPeripherals:[KurmaPeripheral] = []
     
@@ -34,6 +35,8 @@ import Matsya
     private var _peripheralTargets:[String: [String: Set<NSObject>]] = [:]
     
     private var _startScanWhenReady:Bool = true
+    
+    private var _peripheralClass:KurmaPeripheral.Type = KurmaPeripheral.self
     
     
     //Public readonly variables
@@ -217,7 +220,7 @@ import Matsya
         if let kp = _discoveredPeripheralsDictionary[uuid] {
             kPeripheral = kp
         } else {
-            kPeripheral = KurmaPeripheral(peripheral: peripheral)
+            kPeripheral = _peripheralClass.init(peripheral: peripheral)
             _discoveredPeripheralsDictionary[uuid] = kPeripheral
             _discoveredPeripherals.append(kPeripheral)
         }
@@ -242,7 +245,7 @@ import Matsya
         if let discoveredPeripheral = _discoveredPeripheralsDictionary[uuid] {
             connectedPeripheral = discoveredPeripheral
         } else {
-            connectedPeripheral = KurmaPeripheral(peripheral: peripheral)
+            connectedPeripheral = _peripheralClass.init(peripheral: peripheral)
             _connectedPeripheralsDictionary[uuid] = connectedPeripheral
         }
         
@@ -402,6 +405,16 @@ extension KurmaCentralManager {
     
     public func removeTarget<T:NSObject where T:KurmaPeripheralEventsHandler>(target:T, forPeripheral peripheralUUID:CBUUID) {
         removeTarget(target, forPeripheral: peripheralUUID.UUIDString)
+    }
+}
+
+extension KurmaCentralManager {
+    public func registerPeripheralClass(aPeripheralClass:KurmaPeripheral.Type) -> Bool {
+        if aPeripheralClass.isSubclassOfClass(KurmaPeripheral) {
+            _peripheralClass = aPeripheralClass
+            return true
+        }
+        return false
     }
 }
 

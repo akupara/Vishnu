@@ -79,7 +79,7 @@ import CoreBluetooth
         }
     }
     
-    init(peripheral:CBPeripheral) {
+    required public init(peripheral:CBPeripheral) {
         _peripheral = peripheral
         super.init()
         _peripheral.delegate = self
