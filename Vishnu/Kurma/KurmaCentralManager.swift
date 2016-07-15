@@ -25,14 +25,10 @@ import Matsya
     }
     
     private var _discoveredPeripheralsDictionary:[String: KurmaPeripheral] = [:]
-    private var _discoveredPeripherals:[KurmaPeripheral] = []
     
     private var _connectedPeripheralsDictionary:[String: KurmaPeripheral] = [:]
-    private var _connectedPeripherals:[KurmaPeripheral] = []
     
     private var _targets:[String:Set<NSObject>] = [:]
-    
-    private var _peripheralTargets:[String: [String: Set<NSObject>]] = [:]
     
     private var _startScanWhenReady:Bool = true
     
@@ -54,31 +50,31 @@ import Matsya
     
     public var discoveredPeripheralCount:Int{
         get {
-            return _discoveredPeripherals.count
+            return _discoveredPeripheralsDictionary.values.count
         }
     }
     
     public var discoveredPeripherals:[KurmaPeripheral] {
         get {
-            return _discoveredPeripherals
+            return Array(_discoveredPeripheralsDictionary.values)
         }
     }
     
     public var connectedPeripherals:[KurmaPeripheral] {
         get {
-            return _connectedPeripherals
+            return Array(_connectedPeripheralsDictionary.values)
         }
     }
     
     public var discoveredPeripheralUUIDs:[String] {
         get {
-            return (_discoveredPeripheralsDictionary as NSDictionary).allKeys as! [String]
+            return Array(_discoveredPeripheralsDictionary.keys)
         }
     }
     
     public var connectedPeripheralUUIDs:[String] {
         get {
-            return (_connectedPeripheralsDictionary as NSDictionary).allKeys as! [String]
+            return Array(_connectedPeripheralsDictionary.keys)
         }
     }
     
@@ -106,7 +102,6 @@ import Matsya
         _startScanWhenReady = false
         
         //Remove all saved devices
-        _discoveredPeripherals.removeAll()
         _status = _status == .Connected ? .Connected : .Scanning
         _centralManager.scanForPeripheralsWithServices(serviceUUIDs, options: options)
         
@@ -222,7 +217,6 @@ import Matsya
         } else {
             kPeripheral = _peripheralClass.init(peripheral: peripheral)
             _discoveredPeripheralsDictionary[uuid] = kPeripheral
-            _discoveredPeripherals.append(kPeripheral)
         }
         
         if let eventTargets = _targets[KurmaCentralManagerEvents.PeripheralDiscovered.eventKey] {
@@ -250,7 +244,6 @@ import Matsya
         }
         
         if false == _connectedPeripheralsDictionary.keys.contains(uuid) {
-            _connectedPeripherals.append(connectedPeripheral)
             _connectedPeripheralsDictionary[uuid] = connectedPeripheral
         }
         
@@ -270,9 +263,10 @@ import Matsya
         if let kPeripheral = _connectedPeripheralsDictionary[uuid] {
             
             _connectedPeripheralsDictionary.removeValueForKey(uuid)
-//            _connectedPeripherals
+            _discoveredPeripheralsDictionary.removeValueForKey(uuid)
+            
             //Set status to idle when no peripheral connected
-            if _connectedPeripherals.count < 1 {
+            if _connectedPeripheralsDictionary.count < 1 {
                 _status = .Idle
             }
             if let eventTargets = _targets[KurmaCentralManagerEvents.PeripheralDisconnected.eventKey] {
@@ -315,7 +309,7 @@ import Matsya
     }
     
     public func isConnectedToPeripheral(peripheral:KurmaPeripheral) -> Bool {
-        return _connectedPeripherals.contains(peripheral)
+        return _connectedPeripheralsDictionary.values.contains(peripheral)
     }
     
     @objc(isConnectedToPeripheralWithUUIDString:)
@@ -333,7 +327,7 @@ import Matsya
     }
     
     public func discoveredPeripheral(peripheral:KurmaPeripheral) -> Bool {
-        return _discoveredPeripherals.contains(peripheral)
+        return _discoveredPeripheralsDictionary.values.contains(peripheral)
     }
     
     @objc(discoveredPeripheralWithUUIDString:)
@@ -350,25 +344,25 @@ import Matsya
 extension KurmaCentralManager {
     
     public func addTarget<T:NSObject where T:KurmaPeripheralEventsHandler>(target:T, forEvent event:KurmaPeripheralEvents, forPeripheral peripheral:KurmaPeripheral) {
-        if _connectedPeripherals.contains(peripheral) {
+        if _connectedPeripheralsDictionary.values.contains(peripheral) {
             peripheral.addTarget(target, forEvent: event)
         }
     }
     
     public func addTarget<T:NSObject where T:KurmaPeripheralEventsHandler>(target:T, forPeripheral peripheral:KurmaPeripheral) {
-        if _connectedPeripherals.contains(peripheral) {
+        if _connectedPeripheralsDictionary.values.contains(peripheral) {
             peripheral.addTarget(target)
         }
     }
     
     public func removeTarget<T:NSObject where T:KurmaPeripheralEventsHandler>(target:T, forEvent event:KurmaPeripheralEvents, forPeripheral peripheral: KurmaPeripheral) {
-        if _connectedPeripherals.contains(peripheral) {
+        if _connectedPeripheralsDictionary.values.contains(peripheral) {
             peripheral.removeTarget(target, forEvent: event)
         }
     }
     
     public func removeTarget<T: NSObject where T:KurmaPeripheralEventsHandler>(target:T, forPeripheral peripheral:KurmaPeripheral) {
-        if _connectedPeripherals.contains(peripheral) {
+        if _connectedPeripheralsDictionary.values.contains(peripheral) {
             peripheral.removeTarget(target)
         }
     }
