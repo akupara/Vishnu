@@ -103,6 +103,12 @@ public enum KurmaBluetoothGATTServices:String {
             return value.specification
         }
     }
+    
+    public var UUID:CBUUID {
+        get {
+            return CBUUID(string: self.rawValue)
+        }
+    }
 }
 
 public enum KurmaBluetoothGATTCharacteristices:String {
@@ -485,6 +491,12 @@ public enum KurmaBluetoothGATTCharacteristices:String {
                 return ""
             }
             return value.specification
+        }
+    }
+    
+    public var UUID:CBUUID {
+        get {
+            return CBUUID(string: self.rawValue)
         }
     }
 }
